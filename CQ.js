@@ -15,6 +15,16 @@ const quizMath = [
     options: ['Halogens', 'Noble Gases', 'Nonmetals', 'Metals'],
     answer: 'Halogens',
   },
+  {
+    question: 'The number 0.005436 has how many significant figures?',
+    options: ['7', '3', '5', '4'],
+    answer: '4',
+  },
+  {
+    question: 'What is the molarity of a solution that contains 1.50 mol HCl in 2.50L of solution?',
+    options: ['0.750 M', '0.600 M', '1.20 M', '1.40 M'],
+    answer: '0.600 M',
+  },
 ];
 
 // Variables to store references to various elements in HTML document
