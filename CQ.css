@@ -3,9 +3,9 @@
   }
 
   body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: "Poppins, sans-serif";
+    background-color: #FFD3D4;
+    color: #fff;
     line-height: 1.6;
     padding: 20px;
     margin: 0;
@@ -14,7 +14,8 @@
   .container {
     max-width: 600px;
     margin: auto;
-    background: white;
+    background: #572649;
+    color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -22,12 +23,13 @@
   
   h1 {
     text-align: center;
-    color: #333;
+    color: #fff;
   }
   
   #quiz .question {
     font-size: 20px;
     margin-bottom: 20px;
+    font-weight: 600;
   }
   
   #quiz .options {
@@ -36,17 +38,18 @@
   
   #quiz .option {
     display: block;
-    background: #efefef;
+    background: #572649;
     margin: 10px 0;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
     user-select: none;
   }
   
   #quiz .option:hover,
   #quiz .option:focus {
-    background: #ddd;
+    background: #2d0c24;
   }
   
   #quiz input[type="radio"] {
@@ -61,17 +64,17 @@
   
   .button {
     display: inline-block;
-    background: #5cb85c;
+    background: #2d0c24;
+    border: white;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
   }
   
   .button:hover {
-    background: #4cae4c;
+    background: #140410;
   }
   
   .hide {
@@ -112,7 +115,7 @@
   }
 
   .selected-option {
-    background-color: #4CAF50; 
-    color: #4CAF50;
+    background-color: #140410; 
+    color: #140410;
   }
   
