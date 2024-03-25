@@ -48,33 +48,45 @@ function shuffleArray(array) {
 
 function displayQuestion() {
   const questionData = quizMath[currentQuestion];
-  
+
   const questionElement = document.createElement('div');
   questionElement.className = 'question';
   questionElement.innerHTML = questionData.question;
-  
+
   const optionsElement = document.createElement('div');
   optionsElement.className = 'options';
-  
+
   const shuffledOptions = [...questionData.options];
   shuffleArray(shuffledOptions);
-  
+
   for (let i = 0; i < shuffledOptions.length; i++) {
     const option = document.createElement('label');
     option.className = 'option';
-  
+
     const radio = document.createElement('input');
     radio.type = 'radio';
     radio.name = 'quiz';
     radio.value = shuffledOptions[i];
-  
+
     const optionText = document.createTextNode(shuffledOptions[i]);
-  
+
     option.appendChild(radio);
     option.appendChild(optionText);
     optionsElement.appendChild(option);
+
+    // Listen for clicks on each option
+    option.addEventListener('click', function() {
+      // Remove selected-option class from all options
+      const allOptions = document.querySelectorAll('.option');
+      allOptions.forEach(function(opt) {
+        opt.classList.remove('selected-option');
+      });
+
+      // Add selected-option class to the clicked option
+      this.classList.add('selected-option');
+    });
   }
-  
+
   quizContainer.innerHTML = '';
   quizContainer.appendChild(questionElement);
   quizContainer.appendChild(optionsElement);
@@ -103,13 +115,16 @@ function displayQuestion() {
     }
   }
   
-function displayResult() {
-  quizContainer.style.display = 'none';
-  submitButton.style.display = 'none';
-  retryButton.style.display = 'inline-block';
-  showAnswerButton.style.display = 'inline-block';
-  resultContainer.innerHTML = `You scored ${score} out of ${quizMath.length}!`;
-}
+  function displayResult() {
+    quizContainer.style.display = 'none';
+    submitButton.style.display = 'none';
+    retryButton.style.display = 'inline-block';
+    
+    // Only show the showAnswerButton here, when the quiz ends
+    showAnswerButton.style.display = 'inline-block';
+    
+    resultContainer.innerHTML = `You scored ${score} out of ${quizMath.length}!`;
+  }
   
 function retryQuiz() {
   currentQuestion = 0;
@@ -129,22 +144,31 @@ function showAnswer() {
   retryButton.style.display = 'inline-block';
   showAnswerButton.style.display = 'none';
   
-  let incorrectAnswersHtml = '';
-  for (let i = 0; i < incorrectAnswers.length; i++) {
-    incorrectAnswersHtml += `
-      <p>
-        <strong>Question:</strong> ${incorrectAnswers[i].question}<br>
-        <strong>Your Answer:</strong> ${incorrectAnswers[i].incorrectAnswer}<br>
-        <strong>Correct Answer:</strong> ${incorrectAnswers[i].correctAnswer}
-      </p>
+  // Check if the incorrectAnswers array is empty
+  if (incorrectAnswers.length === 0) {
+    resultContainer.innerHTML = `
+      <p>You scored ${score} out of ${quizMath.length}!</p>
+      <p>You got 'em all right!</p>
+    `;
+  } else {
+    // If there are incorrect answers, display them as before
+    let incorrectAnswersHtml = '';
+    for (let i = 0; i < incorrectAnswers.length; i++) {
+      incorrectAnswersHtml += `
+        <p>
+          <strong>Question:</strong> ${incorrectAnswers[i].question}<br>
+          <strong>Your Answer:</strong> ${incorrectAnswers[i].incorrectAnswer}<br>
+          <strong>Correct Answer:</strong> ${incorrectAnswers[i].correctAnswer}
+        </p>
+      `;
+    }
+
+    resultContainer.innerHTML = `
+      <p>You scored ${score} out of ${quizMath.length}!</p>
+      <p>Incorrect Answers:</p>
+      ${incorrectAnswersHtml}
     `;
   }
-  
-  resultContainer.innerHTML = `
-    <p>You scored ${score} out of ${quizMath.length}!</p>
-    <p>Incorrect Answers:</p>
-    ${incorrectAnswersHtml}
-  `;
 }
   
 submitButton.addEventListener('click', checkAnswer);
