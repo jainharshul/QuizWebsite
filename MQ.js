@@ -15,6 +15,16 @@ const quizMath = [
     options: ['Rectangle', 'Square', 'Triangle', 'Circle'],
     answer: 'Triangle',
   },
+  {
+    question: 'What is the value of m, if m + 2 = n and n = 3?',
+    options: ['1', '2', '3', '4'],
+    answer: '1',
+  },
+  {
+    question: 'The sequence 1, 3, 5, 7, 9. Find the common difference.',
+    options: ['1', '3', '5', '2'],
+    answer: '2',
+  },
 ];
 
 // Variables to store references to various elements in HTML document
